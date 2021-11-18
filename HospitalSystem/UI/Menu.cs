@@ -73,8 +73,15 @@ namespace HospitalSystem.UI
                     }
                 case "Add diagnosis":
                     {
-                        var diagnosis = AnsiConsole.Ask<string>("Enter patient's [green]diagnosis[/]: ");
-                        _service.AddDiagnosis(diagnosis);
+                        if(_service.GetPatientRecords().Count == 0)
+                        {
+                            AnsiConsole.MarkupLine("The schedule is [red bold]empty![/]");
+                        }
+                        else
+                        {
+                            var diagnosis = AnsiConsole.Ask<string>("Enter patient's [green]diagnosis[/]: ");
+                            _service.AddDiagnosis(diagnosis);
+                        }
                         break;
                     }
                 case "Display records":

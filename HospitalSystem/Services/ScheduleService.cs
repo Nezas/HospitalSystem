@@ -20,9 +20,7 @@ namespace HospitalSystem.Services
 
         public void AddNewRecord(PatientRecord patientRecord)
         {
-            var patientRecords = _patientRecords.ToList();
-            patientRecords.Add(patientRecord);
-            _patientRecords = new Queue<PatientRecord>(patientRecords.OrderBy(p => p.AcceptanceTime));
+            _patientRecords.Enqueue(patientRecord);
         }
 
         public IEnumerable<PatientRecord> FilterPatientRecords(IFilter filter)
